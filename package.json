@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "sass src/scss:dist/css",
-    "watch": "sass --watch src/scss:dist/css & live-server "
+    "watch": "sass --watch src/scss:dist/css & live-server ",
+    "docs": "jsdoc -c config.json -r"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/Edinanorge/Css_Frameworks_CA#readme",
   "devDependencies": {
+    "jsdoc": "^4.0.2",
     "live-server": "^1.2.2",
     "sass": "^1.57.1"
   },

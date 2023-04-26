@@ -1,8 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 @import "variables.scss";
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
-// general
+// costume scrollbar
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $dark;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+// General style
+
+.success {
+  color: $success;
+  font-weight: 600;
+}
+
+.danger {
+  color: $danger;
+}
+
 .bg-input-color {
   background-color: $bg-input-color;
 }
@@ -13,15 +39,6 @@
   object-fit: $fit;
 }
 
-//..... login page.....//
-.login-main {
-  height: 90vh;
-  form {
-    max-width: 28rem;
-  }
-}
-
-//..... home page....//
 // nav
 .main-navigation {
   background-color: $nav-bg;
@@ -40,6 +57,7 @@
   .navbar-brand img {
     width: 2rem;
   }
+
   .form-control {
     border-radius: 1.5rem;
   }
@@ -47,62 +65,64 @@
   .profil-img {
     @include image-size(2rem, 2rem, cover);
   }
-  .nav-item:hover,
-  .search:hover {
-    background-color: $gray-800;
+
+  .btn-search {
+    border-radius: 0;
+    & i:hover {
+      color: $secondary;
+    }
   }
+  .nav-link:hover {
+    box-shadow: 0 -2px 0 $gray-700 inset;
+  }
+}
+
+// forms
+form {
+  max-width: 28rem;
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .btn-toggle-password {
+    top: 16%;
+    right: 1%;
+  }
+}
+
+.btn-login {
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: $primary;
+  }
+}
+
+//avatar
+.user-profile-picture {
+  @include image-size(2.5rem, 2.5rem, cover);
 }
 
 // main
 .profil-extra-info img {
-  @include image-size(5rem, 5rem, cover);
+  @include image-size(auto, 9rem, contain);
 }
-// create post
-.add-post {
-  position: relative;
 
-  input {
-    padding: 0.7rem;
-  }
-
-  .btn-emoji {
-    top: 10%;
-    left: 0.5rem;
-  }
-
-  .btn-image {
-    right: 4rem;
-    top: 10%;
-  }
-
-  .btn-emoji,
-  .btn-image {
-    position: absolute;
-    z-index: 9;
-    transition: all 0.4s ease;
-
-    &:hover {
-      background-color: $primary;
-    }
-  }
-}
 // contacts
+.contacts {
+  overflow-x: scroll;
+}
 .contacts img,
 .feed-img {
   @include image-size(3rem, 3rem, cover);
 }
 
 // feeds
-main {
-  position: relative;
-}
-.feed {
-  .card-link {
-    transition: all 0.4s ease;
-    &:hover {
-      background-color: $gray-700;
-    }
-  }
+
+.card {
+  border: none;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 
 .card-img {
@@ -110,20 +130,45 @@ main {
   @include image-size(15rem, 100%, cover);
 }
 
-// events
-
 //.... profil page .....//
-.profil {
-  .profil-picture {
-    @include image-size(15rem, 15rem, cover);
-  }
-  .gallery img {
-    @include image-size(15rem, 100%, cover);
-  }
+
+.profil-picture {
+  @include image-size(10rem, 10rem, cover);
 }
 
+// @media
 @media only screen and (min-width: 768px) {
   .main-navigation {
     backdrop-filter: blur(5px);
   }
+
+  .profile {
+    position: fixed;
+    height: 100vh;
+    left: 4%;
+  }
+
+  .profil-info {
+    position: fixed;
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
+  .profil-extra-info {
+    position: fixed;
+    top: 5%;
+    z-index: 3;
+  }
+
+  .contacts-container {
+    margin-top: 20rem;
+  }
 }
+@media only screen and (min-width: 1200px) {
+  .events {
+    position: fixed;
+    right: 4%;
+    top: 12%;
+  }
+} ;

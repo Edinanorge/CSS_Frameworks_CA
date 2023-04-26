@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: templates/posts.mjs</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: templates/posts.mjs</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  createButton,
+  createElement,
+  createLink,
+  createParagraf,
+  createImage,
+  createCounter,
+} from "./helperFunctions.mjs";
+import { reactPost } from "../api/posts/react.mjs";
+
+/**
+ * This function makes a template for the displayed posts.
+ * @param {object} postData -Post data from the API
+ * @returns  HTML
+ * @example
+ * ```js postTemplate(postData)
+ * ```
+ */
+
+export function postTemplate(postData) {
+
+  const container = createElement("div", ["card", "p-0", "feed", "mb-3"]);
+
+  const cardHeader = createElement("div", ["d-flex", "flex-row", "align-items-center", "justify-content-between"]);
+  container.appendChild(cardHeader);
+
+  const userContainer = createLink("#", "Link to user profile", "", [
+    "d-flex",
+    "flex-row",
+    "align-items-center",
+    "text-white",
+    "text-decoration-none",
+  ]);
+  cardHeader.appendChild(userContainer);
+
+  const userImg = createElement("div", [
+    "rounded-circle",
+    "m-2",
+    "border",
+    "border-secondary",
+    "bg-card",
+    "border-1",
+    "user-profile-picture",
+  ]);
+
+  if (postData.author.avatar) {
+    userImg.style.backgroundImage = ` url(${postData.author.avatar}`;
+    userImg.style.backgroundSize = "cover";
+  }
+
+  userContainer.appendChild(userImg);
+
+  const userName = createParagraf(postData.author.name, ["m-0"]);
+  userContainer.appendChild(userName);
+
+  const updatedDate = createElement("div", ["text-muted", "fs-7", "mx-3"]);
+  updatedDate.innerText = `Updated: ${postData.updated.substring(0, 10)} `;
+  cardHeader.appendChild(updatedDate);
+
+  const card = createElement("div", ["card-body"]);
+  container.appendChild(card);
+
+  const titleLink = createLink(`/post/index.html?id=${postData.id}`, "", postData.title, [
+    "card-title",
+    "fs-5",
+    "fw-bolder",
+    "text-white",
+    "text-decoration-none",
+    "title-link",
+  ]);
+  card.appendChild(titleLink);
+
+  const body = createParagraf(postData.body, ["mb-3", "text-muted"]);
+  card.appendChild(body);
+
+  const tag = createElement("SPAN", ["text-secondary", "ps-2", "fs-7"]);
+  tag.innerText = postData.tags.map((tag) => `#${tag}`).join(" ");
+  body.appendChild(tag);
+
+  if (postData.media) {
+    const image = createImage(["card-img", "mb-1"], postData.media, "profile avatar");
+    card.appendChild(image);
+  }
+
+  const linkContainer = createElement("div", ["d-flex", "justify-content-between", "align-items-center"]);
+  card.appendChild(linkContainer);
+
+  const buttonContainer = document.createElement("div");
+  linkContainer.appendChild(buttonContainer);
+
+  const buttonLike = createButton(["btn", "text-warning", "fs-6", "p-1"], "Like");
+  buttonLike.innerText = "👍";
+
+  if (postData.reactions)
+    postData.reactions.map((reaction) => createCounter(reaction, buttonLike.innerText, buttonLike));
+
+  buttonLike.addEventListener("click", () => reactPost(postData, buttonLike.innerText));
+  buttonContainer.appendChild(buttonLike);
+
+  const buttonFunny = createButton(["btn", "text-warning", "fs-6", "p-1"], "Funny");
+  buttonFunny.innerText = "😂";
+
+  if (postData.reactions)
+    postData.reactions.map((reaction) => createCounter(reaction, buttonFunny.innerText, buttonFunny));
+
+  buttonFunny.addEventListener("click", () => reactPost(postData, buttonFunny.innerText));
+  buttonContainer.appendChild(buttonFunny);
+
+  const buttonNeutral = createButton(["btn", "text-warning", "fs-6", "p-1"], "No comment");
+  buttonNeutral.innerText = "😒";
+
+  if (postData.reactions)
+    postData.reactions.map((reaction) => createCounter(reaction, buttonNeutral.innerText, buttonNeutral));
+
+  buttonNeutral.addEventListener("click", () => reactPost(postData, buttonNeutral.innerText));
+  buttonContainer.appendChild(buttonNeutral);
+
+  const buttonLove = createButton(["btn", "text-warning", "fs-6", "p-1"], "Love");
+  buttonLove.innerText = "❤️";
+
+  if (postData.reactions)
+    postData.reactions.map((reaction) => createCounter(reaction, buttonLove.innerText, buttonLove));
+
+  buttonLove.addEventListener("click", () => reactPost(postData, buttonLove.innerText));
+  buttonContainer.appendChild(buttonLove);
+
+  const linkComment = createLink(`/post/index.html?id=${postData.id}`, "Commet", "Leave a commet", ["btn", "border"]);
+  linkContainer.appendChild(linkComment);
+
+  return container;
+}
+
+export function renderPostTemplate(postData, parent) {
+  parent.append(postTemplate(postData));
+}
+
+export function renderPostTemplates(postDataList, parent) {
+  parent.append(...postDataList.map(postTemplate));
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#commentPost">commentPost</a></li><li><a href="global.html#createPost">createPost</a></li><li><a href="global.html#displayContacts">displayContacts</a></li><li><a href="global.html#displayMessage">displayMessage</a></li><li><a href="global.html#displayPosts">displayPosts</a></li><li><a href="global.html#displaySingelPost">displaySingelPost</a></li><li><a href="global.html#displayUserPosts">displayUserPosts</a></li><li><a href="global.html#getFilteredPosts">getFilteredPosts</a></li><li><a href="global.html#getPost">getPost</a></li><li><a href="global.html#getPosts">getPosts</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#getProfilePosts">getProfilePosts</a></li><li><a href="global.html#getProfiles">getProfiles</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#postTemplate">postTemplate</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removePost">removePost</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#setAvatar">setAvatar</a></li><li><a href="global.html#singlePostTemplate">singlePostTemplate</a></li><li><a href="global.html#submitCommentForm">submitCommentForm</a></li><li><a href="global.html#submitCreatPostForm">submitCreatPostForm</a></li><li><a href="global.html#submitEditPostForm">submitEditPostForm</a></li><li><a href="global.html#submitEditProfileForm">submitEditProfileForm</a></li><li><a href="global.html#submitFilterForm">submitFilterForm</a></li><li><a href="global.html#submitLoginForm">submitLoginForm</a></li><li><a href="global.html#submitSignupForm">submitSignupForm</a></li><li><a href="global.html#updatePost">updatePost</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#userPostTemplate">userPostTemplate</a></li><li><a href="global.html#userTemplate">userTemplate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Mar 12 2023 14:28:10 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,20 +1,56 @@
 # Social Media App
-![Screenshot Social Media App Home page](https://user-images.githubusercontent.com/52853951/215260904-ca9f71ac-c339-40bb-a923-28435562ee4f.png)
 
+![image](https://user-images.githubusercontent.com/52853951/222701759-03f3081f-ce95-44dc-b235-bfa351e60efc.png)
 
-This is a responsive front end for a Social Media App.
+This project is built for a JavaScript2 course assignment at Noroff.
 
-Site architecture:
+## [Trello bord](https://trello.com/b/Kmrw1xdx/js2-ca)
+
+## Brief
+
+You have been tasked with producing a new JavaScript front-end client for an existing social media platform. The client application must be attractive and responsive, but you have an otherwise blank slate in terms of theme design language.
+
+Using the provided API and API documentation, create a functioning user interface that allows for viewing, posting, editing and deleting social media content.
+
+Social API routes require authorisation via JWT (JSON Web Tokens). You will need to register an account and login to access your token.
+
+#### Required features
+
+The following user stories are required for a passing submission:
+
+- User with @noroff.no or @stud.noroff.no email can register profile
+- Registered user can login
+- User can view a post content feed
+- User can filter the post content feed
+- User can search the post content feed
+- User can view a post content item by ID
+- User can create a post content item
+- User can update a post content item
+- User can delete a post content item
+
+#### Additional features
+
+The following user stories are optional:
+
+- User can create a comment on a post
+- User can edit profile media
+- User can follow/unfollow a profile
+- User can react to a post content item
+
+## Site architecture:
 
 - Login page
+- Regiter page
 - Profil page
-- Home page
+- Home/Posts page
+- Single Post page
 
 ## Built With
 
 - HTML
 - SASS
 - [Bootstrap](https://getbootstrap.com)
+- JavaScript
 
 ## Getting Started
 
@@ -36,7 +72,7 @@ npm install
 
 To run the app, run the following commands:
 
-```bash
+```
 npm run watch
 ```
 

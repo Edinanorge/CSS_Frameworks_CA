@@ -4,37 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media App | Log In page</title>
+    <title>Social Media App</title>
     <link rel="stylesheet" href="/dist/css/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/src/js/index.mjs" type="module" defer></script>
   </head>
 
-  <body class="bg-dark">
-    <main class="login-main container pt-5 d-flex flex-column justify-content-evenly flex-lg-row align-items-center">
+  <body>
+    <main class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
       <!-- Logo -->
-      <div class="text-center mt-0 ms-lg-5 pt-0 pt-lg-5">
-        <img src="src/images/logo.png" alt="Smiley Face Logo" class="mw-100" />
-        <h1 class="text-white fw-bold mt-1">Social Media</h1>
-        <p class="text-muted">Connect whit friends.</p>
+      <div class="text-center mb-4">
+        <img src="src/images/logo1.png" alt="Smiley Face Logo" class="mw-100" />
+
+        <h1 class="text-muted fs-6 mb-5">Connect with friends.</h1>
       </div>
-      <!--Login Form  -->
-      <form action="/profile.html" method="get" class="mx-auto w-100">
-        <div class="input-group-lg mt-5">
-          <input type="email" class="form-control border bg-input-color my-3" placeholder="Email" required />
-          <input type="password" class="form-control border bg-input-color my-3" placeholder="Password" required />
-          <button type="submit" class="btn btn-primary btn-lg w-100 my-3">Log In</button>
-          <a href="#" class="text-decoration-none text-muted text-center"><p>Forgotten password?</p></a>
-        </div>
-        <hr class="text-muted mt-5" />
-        <p class="text-center text-muted">
-          Don't have account? <a href="#" class="text-secondary text-decoration-none">Sign Up</a>
-        </p>
-      </form>
+
+      <!-- Links to register and login -->
+      <div>
+        <a href="profile/register/" class="btn btn-primary btn-lg w-100 mb-3">Create new account</a>
+        <a href="profile/login/" class="btn btn-lg btn-login w-100 border-primary">Log in</a>
+      </div>
+      <div id="test"></div>
     </main>
-    <footer class="footer mt-auto py-3 bg-dark text-center">
-      <div class="container">
-        <span class="text-muted">Social Media&copy; copyright</span>
+    <footer class="footer position-sticky bottom-0 py-3">
+      <div class="text-center">
+        <span class="text-muted fs-7">Social Media &copy; copyright</span>
       </div>
     </footer>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

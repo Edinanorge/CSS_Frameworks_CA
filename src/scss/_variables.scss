@@ -1,18 +1,45 @@
 // theme-colors
-$primary: #3a015c;
-$secondary: #db9ffe;
+// $primary: #3a015c;
+// $secondary: #db9ffe;
 
-$white: #fff;
+// $white: #fff;
+// $gray-100: #f8f9fa;
+// $gray-200: #e9ecef;
+// $gray-300: #dee2e6;
+// $gray-400: #ced4da;
+// $gray-500: #adb5bd;
+// $gray-600: #cbcfd2;
+// $gray-700: #495057;
+// $gray-800: #1a1a1a;
+// $gray-900: #111111;
+// $black: #000;
+
+// $light: $gray-100;
+// $dark: $gray-900;
+
+// $body-bg: $gray-900;
+// $body-color: $white;
+
+// $nav-bg: rgb(0, 0, 0, 0.75);
+// $card-bg: $gray-800;
+
+$primary: #59227e;
+$secondary: #db9ffe;
+$success: #50875f;
+$danger: #f44336;
+$warning: #cd7727;
+
+$white: #f8f8f7;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
 $gray-400: #ced4da;
 $gray-500: #adb5bd;
 $gray-600: #cbcfd2;
-$gray-700: #495057;
+$gray-700: #999999;
 $gray-800: #1a1a1a;
-$gray-900: #111111;
-$black: #000;
+$gray-900: #241c37;
+$black: #2d2345;
 
 $light: $gray-100;
 $dark: $gray-900;
@@ -20,17 +47,17 @@ $dark: $gray-900;
 $body-bg: $gray-900;
 $body-color: $white;
 
-$nav-bg: rgb(0, 0, 0, 0.75);
-$card-bg: $gray-800;
+$nav-bg: rgb(89, 34, 126, 0.75);
+$card-bg: $black;
 
 // form input redesign
-$bg-input-color: #222;
+$bg-input-color: $gray-900;
 $border-color: $gray-700;
 $border-radius: 0.6rem;
 
 // typografy
-$text-muted: #adb5bd;
-$font-family-sans-serif: "Roboto", sans-serif;
+$text-muted: #d2d6db;
+$font-family-sans-serif: "Poppins", sans-serif;
 $font-size-base: 1rem;
 $h1-font-size: $font-size-base * 2.5;
 $h2-font-size: $font-size-base * 2;

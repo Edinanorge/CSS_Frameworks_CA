@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: templates/profilPost.mjs</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: templates/profilPost.mjs</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  createButtonWhitTextContent,
+  createParagraf,
+  createElement,
+  createImage,
+  createLink
+} from "./helperFunctions.mjs";
+import { removePost } from "../api/posts/delete.mjs";
+
+/**
+ * THis function creates template for post form specific user, whit edit , and delete buttons
+ * @param {object} postData -Post data form API
+ * @returns HTML 
+ */
+
+export function userPostTemplate(postData) {
+  const container = createElement("div", ["card", "feed", "p-0", "mb-3"]);
+
+  const cardHeader = createElement("div", ["d-flex", "justify-content-between"]);
+  container.appendChild(cardHeader);
+
+  const userContainer = createElement("div", ["d-flex", "flex-row", "align-items-center", "ps-2"]);
+  cardHeader.appendChild(userContainer);
+
+  const userImg = createElement("div", [
+    "rounded-circle",
+    "m-2",
+    "border",
+    "border-secondary",
+    "border-2",
+    "user-profile-picture",
+  ]);
+
+  if (postData.author.avatar) {
+    userImg.style.backgroundImage = ` url(${postData.author.avatar}`;
+    userImg.style.backgroundSize = "cover";
+  }
+
+  userContainer.appendChild(userImg);
+
+  const userName = createParagraf(postData.author.name, ["m-0"]);
+  userContainer.appendChild(userName);
+
+  const buttonContainer = createElement("div", ["d-flex", "justify-content-around", "align-self-end", "p-3"]);
+  cardHeader.appendChild(buttonContainer);
+
+  const deleteBtn = createButtonWhitTextContent(["btn", "border", "me-1"], "Delete");
+  deleteBtn.addEventListener("click", () => {
+    removePost(postData.id);
+  });
+  buttonContainer.appendChild(deleteBtn);
+
+  const editLink = createLink(`/post/edit/index.html?id=${postData.id}`, "", "Edit", ["btn", "btn-success", "ms-1"]);
+  buttonContainer.appendChild(editLink);
+
+  const cardBody = createLink(`/post/index.html?id=${postData.id}`, "", "", [
+    "card-body",
+    "text-decoration-none",
+    "text-white",
+  ]);
+  container.appendChild(cardBody);
+
+  const title = createParagraf(postData.title, ["card-title", "fs-5", "fw-bolder"]);
+  cardBody.appendChild(title);
+
+  const body = createParagraf(postData.body, ["mb-3", "text-muted"]);
+  cardBody.appendChild(body);
+
+  const tag = createElement("SPAN", ["text-secondary", "ps-2", "fs-7"]);
+  tag.innerText = postData.tags.map((tag) => `#${tag}`).join(" ");
+  body.appendChild(tag);
+
+  if (postData.media) {
+    const image = createImage(["card-img", "mb-1"], postData.media, `Image from ${postData.title}`);
+    cardBody.appendChild(image);
+  }
+
+  return container;
+}
+
+export function renderUserPostTemplate(postData, parent) {
+  parent.append(userPostTemplate(postData));
+}
+
+export function renderUserPostTemplates(postDataList, parent) {
+  parent.append(...postDataList.map(userPostTemplate));
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#commentPost">commentPost</a></li><li><a href="global.html#createPost">createPost</a></li><li><a href="global.html#displayContacts">displayContacts</a></li><li><a href="global.html#displayMessage">displayMessage</a></li><li><a href="global.html#displayPosts">displayPosts</a></li><li><a href="global.html#displaySingelPost">displaySingelPost</a></li><li><a href="global.html#displayUserPosts">displayUserPosts</a></li><li><a href="global.html#getFilteredPosts">getFilteredPosts</a></li><li><a href="global.html#getPost">getPost</a></li><li><a href="global.html#getPosts">getPosts</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#getProfilePosts">getProfilePosts</a></li><li><a href="global.html#getProfiles">getProfiles</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#postTemplate">postTemplate</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removePost">removePost</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#setAvatar">setAvatar</a></li><li><a href="global.html#singlePostTemplate">singlePostTemplate</a></li><li><a href="global.html#submitCommentForm">submitCommentForm</a></li><li><a href="global.html#submitCreatPostForm">submitCreatPostForm</a></li><li><a href="global.html#submitEditPostForm">submitEditPostForm</a></li><li><a href="global.html#submitEditProfileForm">submitEditProfileForm</a></li><li><a href="global.html#submitFilterForm">submitFilterForm</a></li><li><a href="global.html#submitLoginForm">submitLoginForm</a></li><li><a href="global.html#submitSignupForm">submitSignupForm</a></li><li><a href="global.html#updatePost">updatePost</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#userPostTemplate">userPostTemplate</a></li><li><a href="global.html#userTemplate">userTemplate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Mar 12 2023 14:28:10 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
